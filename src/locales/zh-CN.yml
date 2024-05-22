@@ -1,0 +1,29 @@
+commands:
+  newreleases:
+    description: "查询项目版本信息"
+
+    info:
+      description: "查询版本信息"
+      options:
+        provider: "指定平台"
+        list: "列出最近发布的版本"
+      messages:
+        release-list: |-
+          {project.name} on {project.provider}
+          {project.url}
+          {#each releases as release}
+          版本: {release.version}
+          发布时间: {release.date}
+          {/each}
+        release-info: |-
+          {project.name} on {project.provider}
+          {project.url}
+          {#if release}
+          版本: {release.version}
+          发布时间: {release.date}{:else}
+          未找到发布版本{/if}
+
+newreleases:
+  project-name-required: "请输入项目名称"
+  invalid-provider: "无效的平台 {provider}"
+  project-not-found: "{provider} 平台上未找到项目 {name}"

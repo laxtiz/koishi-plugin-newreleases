@@ -1,7 +1,16 @@
 {
   "name": "koishi-plugin-newreleases",
-  "description": "notify with newreleases.io",
-  "version": "0.0.1",
+  "description": "Koishi plugin for newreleases.io",
+  "version": "0.1.0",
+  "author": {
+    "name": "Zhong Liu",
+    "email": "laxtiz@live.com"
+  },
+  "homepage": "https://github.com/laxtiz/koishi-plugin-newreleases",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laxtiz/koishi-plugin-newreleases.git"
+  },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -11,12 +20,21 @@
   "license": "MIT",
   "scripts": {},
   "keywords": [
+    "newreleases",
     "chatbot",
     "koishi",
     "plugin"
   ],
   "devDependencies": {},
   "peerDependencies": {
-    "koishi": "^4.17.6"
+    "koishi": "^4.17.5"
+  },
+  "koishi": {
+    "description": {
+      "zh": "查询各个平台的项目版本信息"
+    },
+    "locale": [
+      "zh"
+    ]
   }
 }
