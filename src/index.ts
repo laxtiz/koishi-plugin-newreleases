@@ -10,7 +10,7 @@ class NewReleases {
   private api: API;
 
   constructor(ctx: Context, config: NewReleases.Config) {
-    ctx.i18n.define("zh-CN", require("./locales/zh-CN.yml"));
+    ctx.i18n.define("zh-CN", require("./locales/zh-CN"));
     this.config = config;
 
     this.api = new API(
