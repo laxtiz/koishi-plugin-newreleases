@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-newreleases",
   "description": "Koishi plugin for newreleases.io",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": {
     "name": "Zhong Liu",
     "email": "laxtiz@live.com"
