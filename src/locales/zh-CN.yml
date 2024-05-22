@@ -22,8 +22,34 @@ commands:
           版本: {release.version}
           发布时间: {release.date}{:else}
           未找到发布版本{/if}
+    watch:
+      description: "订阅项目版本更新通知"
+      options:
+        provider: "指定平台"
+      messages:
+        webhook-not-found: "未找到名称为 {name} 的 webhook"
+        notification-added: "已订阅 {project.provider} 平台 {project.name} 项目的更新通知"
+    unwatch:
+      description: "取消订阅"
+      options:
+        provider: "指定平台"
+      messages:
+        notification-removed: "已取消订阅 {project.provider} 平台 {project.name} 项目更新通知"
+        notification-not-found: "没有订阅 {project.provider} 平台 {project.name} 项目更新通知"
+    list:
+      description: "列出已订阅的项目"
+      messages:
+        watch-list: |-
+          当前已订阅的项目
+          {#each watchs as watch}
+          {watch.name} on {watch.provider}{/each}
+        empty: "没有已订阅的项目"
 
 newreleases:
   project-name-required: "请输入项目名称"
   invalid-provider: "无效的平台 {provider}"
   project-not-found: "{provider} 平台上未找到项目 {name}"
+  webhook-not-found: "未找到名称为 {name} 的 webhook"
+  notification: |-
+    {0} on {1} 更新了新版本 {2}
+    发布时间: {3}

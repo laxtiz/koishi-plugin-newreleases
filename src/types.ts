@@ -77,3 +77,15 @@ export interface ReleaseNote {
   message: string;
   url: string;
 }
+
+export interface Payload {
+  provider: Provider;
+  project: string;
+  version: string;
+  time: string;
+  note: {
+    title: string;
+    message: string;
+  };
+  project_note: string;
+}
