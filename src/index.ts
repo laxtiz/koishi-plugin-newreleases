@@ -38,6 +38,7 @@ class NewReleases {
 
     ctx.command("newreleases").alias("nr");
 
+    // 查询项目信息
     ctx
       .command("nr.info <name:string> [version:string]")
       .option("provider", "-p <provider:string>", {
@@ -108,6 +109,8 @@ class NewReleases {
     });
 
     ctx = ctx.guild();
+
+    // 订阅项目更新通知
     ctx
       .command("nr.watch <name:string>", { authority: 3 })
       .option("provider", "-p <provider:string>", {
@@ -136,8 +139,8 @@ class NewReleases {
         }
 
         const data: NewReleases.Watch = {
-          provider,
-          name,
+          provider: project.provider,
+          name: project.name,
           platform: session.platform,
           cid: session.channelId,
         };
@@ -149,20 +152,20 @@ class NewReleases {
         return session.text(".notification-added", { project });
       });
 
+    // 取消订阅
     ctx
       .command("nr.unwatch <name:string>", { authority: 3 })
       .option("provider", "-p <provider:string>", {
         fallback: config.defaultProvider,
       })
       .action(async ({ session, options }, name) => {
-        // TODO: 取消订阅
         const provider = options.provider as Provider;
         const project = await this.getProject(session, provider, name);
         if (!project) return;
 
         const data: NewReleases.Watch = {
-          provider,
-          name,
+          provider: project.provider,
+          name: project.name,
           platform: session.platform,
           cid: session.channelId,
         };
@@ -175,6 +178,7 @@ class NewReleases {
         return session.text(".notification-removed", { project });
       });
 
+    // 查询已订阅的项目
     ctx.command("nr.list").action(async ({ session }) => {
       const watchs = await ctx.database.get("newreleases", {
         platform: session.platform,
@@ -193,6 +197,7 @@ class NewReleases {
       return null;
     }
 
+    name = name.toLowerCase();
     if (!providers.includes(provider)) {
       session.send(session.text("newreleases.invalid-provider", { provider }));
       return null;
